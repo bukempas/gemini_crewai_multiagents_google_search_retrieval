@@ -2,7 +2,7 @@
 !pip install crewai langchain-google-genai crewai_tools
 
 #import libraries and gemini_api_key and only Tool for searching the web for grounding
-#in Colab, google_api_key may be GOOGLE_API_KEY
+#in Colab, Gemini_api_key may be as GOOGLE_API_KEY
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -11,9 +11,9 @@ from crewai import Agent
 from langchain.tools import tool
 from langchain_google_genai import ChatGoogleGenerativeAI
 
-
+api_key = os.getenv("GOOGLE_API_KEY")
 llm=ChatGoogleGenerativeAI(model="gemini-1.5-flash",tools="google_search_retrieval",verbose=True, 
-temperature=0.7,google_api_key="gemini_api_key")
+temperature=0.7,google_api_key="api_key")
 
 # Warning control
 import warnings
