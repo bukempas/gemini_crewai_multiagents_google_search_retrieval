@@ -11,9 +11,21 @@ from crewai import Agent
 from langchain.tools import tool
 from langchain_google_genai import ChatGoogleGenerativeAI
 
-api_key = os.getenv("GOOGLE_API_KEY")
-llm=ChatGoogleGenerativeAI(model="gemini-1.5-flash",tools="google_search_retrieval",verbose=True, 
-temperature=0.7,google_api_key="api_key")
+from google.colab import userdata
+userdata.get('GOOGLE_API_KEY')
+
+from crewai import LLM
+import litellm
+
+api_key = "your-api-key"  # Get API key from environment variable
+litellm.api_key = api_key
+GEMINI_API_KEY = api_key # it is redundant but keeps original code behaviour
+llm = LLM(
+    model="gemini/gemini-pro",
+    temperature=0.7,
+    google_api_key=api_key,
+    tools='google_search_retrieval',
+)
 
 # Warning control
 import warnings
